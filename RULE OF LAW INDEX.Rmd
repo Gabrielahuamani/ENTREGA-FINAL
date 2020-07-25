@@ -1,0 +1,29 @@
+#RULE OF LAW INDEX
+
+#carga de datos
+```{r}
+library(rio)
+lkXLSX="https://github.com/Gabrielahuamani/ENTREGA-FINAL/raw/master/RULE%20OF%20LAW%20INDEX.xlsx"
+RULEOFLAW=import(lkXLSX)
+
+```
+
+#limpieza de datos
+```{r}
+names(RULEOFLAW)
+#eliminar las variables que no se van a usar
+RULEOFLAW$GLOBALRANK=NULL
+
+#cambiar nombres de las variables
+names(RULEOFLAW)[names(RULEOFLAW)=="Absence ofCorruption"]="AbsenceofCorruption"
+names(RULEOFLAW)[names(RULEOFLAW)=="Order andSecurity"]="OrderandSecurity"
+
+#cambiar el nombre de los países
+
+RULEOFLAW[RULEOFLAW$Country=="",'Country']=""
+
+
+RULEOFLAW[,-1]=lapply(RULEOFLAW[,-1], as.numeric)
+str(RULEO)
+```
+
